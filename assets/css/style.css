@@ -2,6 +2,10 @@
 	box-sizing: border-box;
 }
 
+html {
+	width: 100% !important;
+}
+
 header {
 	background-color: rgb(5, 40, 225);
 	/* background-image: linear-gradient(to bottom right, rgb(5, 40, 225), #007bff); */
@@ -118,6 +122,7 @@ header h1 {
 	flex-direction: column;
 	align-items: start;
 	justify-content: center;
+	flex-wrap: wrap;
 }
 
 .resultCityname {
@@ -204,23 +209,23 @@ header h1 {
 	margin-bottom: 10px;
 }
 
-@media screen and (max-width: 991px) {
+/* @media screen and (max-width: 991px) {
 	html {
 		width: 100% !important;
-	}
+	} */
 
-	.resultrowMain {
+/* .resultrowMain {
 		flex-direction: column;
 		justify-content: center;
 		flex-wrap: wrap;
-	}
+	} */
 
-	/* .resultDate {
+/* .resultDate {
 		display: flex !important;
 		align-items: flex-start !important;
 		justify-content: left !important;
 	} */
-}
+/* } */
 
 @media screen and (min-width: 992px) {
 	html {
