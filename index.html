@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<!-- CSS reset -->
+		<link rel="stylesheet" type="text/CSS" href="assets/css/reset.css" />
+		<!-- BootstrapCDN -->
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+			integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+			crossorigin="anonymous"
+		/>
+		<!-- Jquery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<!-- Jquery for Bootstrap -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+			integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+			integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+			crossorigin="anonymous"
+		></script>
+		<!-- local CSS -->
+		<link rel="stylesheet" href="assets/CSS/style.css" />
+
+		<title>Weather Dashboard</title>
+	</head>
+	<body>
+		<header>
+			<h1 class="Display-4 text-center my-auto py-0">Weather Dashboard</h1>
+		</header>
+		<main>
+			<div class="container mainContianer pd-0 mx-0">
+				<div class="row">
+					<!-- search city bar -->
+					<div class="col-12 col-lg-3 pt-3 px-0 searchCity">
+						<div class="col-12">
+							Search for a city :
+						</div>
+						<div class="col-12 pr-lg-5 input-group mb-3">
+							<input
+								type="text"
+								class="form-control"
+								placeholder="(e.g. London,GB)"
+								aria-label="Enter a city"
+								aria-describedby="button-addon2"
+								id="searchCityInput"
+							/>
+							<div class="input-group-append">
+								<button
+									class="btn btn-outline-primary searchCityInputBtn"
+									type="button"
+									id="button-addon2"
+								>
+									<img
+										class="searchCityInputBtnImg1"
+										src="../uwbootscamphomework6/assets/images/search.png"
+										srcset="../uwbootscamphomework6/assets/images/search.svg"
+										alt="blue search icon"
+									/>
+								</button>
+							</div>
+						</div>
+						<ul class="col-12 pt-3 d-none d-lg-block searchRecordList">
+							<li class="searchRecordHead" id="searchRecordHead">
+								<span class="searchRecordSpanHead" id="searchRecordHead"
+									>Recent Search :</span
+								>
+							</li>
+							<li class="searchRecord" id="searchRecord1">
+								<span
+									class="searchRecordSpan btn btn-outline-primary"
+									id="searchRecordSpan1"
+									dataValue="Hong Kong"
+									>Hong Kong</span
+								>
+							</li>
+							<li class="searchRecord" id="searchRecord2">
+								<span
+									class="searchRecordSpan btn btn-outline-primary"
+									id="searchRecordSpan1"
+									dataValue="Tokyo"
+									>Tokyo</span
+								>
+							</li>
+						</ul>
+					</div>
+					<!-- show search city data -->
+					<div class="showResult col-12 col-lg-9 pt-3">
+						<!-- today weather -->
+						<!-- use for testing ultra long city name -->
+						<!-- <span class="resultCityname display-4 mb-2 mr-lg-2"
+																	>XXXXX XXXXXXXXXXXXXXXXXXXXX XXX</span
+																> -->
+						<!-- <div class="col-12 resultToday"></div> -->
+						<!-- 5 days forcast -->
+						<div class="col-12 row forcastRow">
+							<div class="col-12 my-3">
+								<h2>5-Days Forcast</h2>
+							</div>
+							<div class="forcastResult forcast1 col-12 mb-3 mr-lg-3 col-lg-2">
+								<div
+									id="forcastDate1"
+									class="forcastResultDetail forcastDate col-12"
+								>
+									12/55/2020
+								</div>
+								<div
+									id="forcastIcon1"
+									class="forcastResultDetail forcastIcon col-12"
+								>
+									<img
+										src="http://openweathermap.org/img/wn/10d.png"
+										alt="weather icon"
+									/>
+								</div>
+								<div
+									id="forcastTemp1"
+									class="forcastResultDetail forcastTemp forcastTemp1 col-12"
+								>
+									Temperture :
+									<span class="forcastTempResult1"> 90.9</span>
+								</div>
+								<div
+									id="forcastHum1"
+									class="forcastResultDetail forcastHum col-12"
+								>
+									Humidity : <span class="forcastHumResult1"> 41%</span>
+								</div>
+							</div>
+							<div class="forcastResult forcast2 col-12 col-lg-2">
+								SSS
+							</div>
+							<div class="forcastResult forcast3 col-12 col-lg-2">
+								SSS
+							</div>
+							<div class="forcastResult forcast4 col-12 col-lg-2">
+								SSS
+							</div>
+							<div class="forcastResult forcast5 col-12 col-lg-2">
+								SSS
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<script src="assets/javascript/today.js"></script>
+		<script src="assets/javascript/forcast.js"></script>
+		<script src="assets/javascript/main.js"></script>
+	</body>
+</html>

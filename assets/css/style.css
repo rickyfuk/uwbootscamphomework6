@@ -1,0 +1,238 @@
+* {
+	box-sizing: border-box;
+}
+
+header {
+	background-color: rgb(5, 40, 225);
+	/* background-image: linear-gradient(to bottom right, rgb(5, 40, 225), #007bff); */
+	background-image: linear-gradient(to bottom right, rgb(78, 78, 235), #a09be5);
+	color: whitesmoke;
+	min-height: 4rem;
+	padding-bottom: 5px;
+}
+
+header h1 {
+	line-height: 1.5;
+	font-size: 3rem;
+	word-spacing: 5px;
+	max-width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.container {
+	max-width: 100% !important;
+}
+
+.mainContainer {
+	max-width: 100% !important;
+}
+
+.searchCity {
+	background-color: #3f97f685;
+	background-image: linear-gradient(
+		to bottom,
+		rgb(235, 235, 235),
+		rgb(122, 153, 240)
+	);
+	border-right: 1px solid rgb(120, 120, 120);
+}
+::placeholder {
+	font-size: 0.8rem;
+}
+
+.searchCityInputBtn img {
+	max-height: 20px !important;
+}
+
+.searchRecordHead {
+	color: rgb(120, 120, 120);
+	border-bottom: 1px solid rgb(120, 120, 120);
+}
+
+.searchRecord {
+	font-size: 1rem;
+	color: rgb(120, 120, 120);
+	border-bottom: 1px solid rgb(120, 120, 120);
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	border-radius: 0px;
+	min-height: 70px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding-left: 20px;
+}
+
+.searchRecord .btn-outline-primary:hover {
+	background-color: transparent;
+	font-weight: bold;
+	color: rgb(120, 120, 120);
+}
+
+.searchRecord .btn-outline-primary:focus {
+	box-shadow: none;
+}
+
+.searchRecord .btn-outline-primary:active {
+	background-color: transparent !important;
+	font-weight: bold;
+}
+.searchRecordHighlight {
+	font-weight: bold;
+}
+
+.searchRecordSpan {
+	border: none;
+	color: rgb(120, 120, 120);
+}
+
+.showResult {
+	background-color: rgb(90, 90, 90);
+	background-image: linear-gradient(
+		to bottom,
+		rgb(235, 235, 235),
+		rgb(122, 153, 240)
+	);
+}
+
+.resultToday {
+	border: 1px solid rgb(90, 90, 90);
+	border-radius: 10px;
+	color: rgb(90, 90, 90);
+	max-width: 100% !important;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: auto;
+	padding-right: auto;
+	text-align: center;
+	padding-bottom: 20px;
+	display: inline-block !important;
+	/* margin-left: 50px !important; */
+}
+
+.resultrowMain {
+	padding-top: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	justify-content: center;
+}
+
+.resultCityname {
+	font-size: 150% !important;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	word-break: break-word;
+	-ms-hyphens: auto;
+	-moz-hyphens: auto;
+	-webkit-hyphens: auto;
+	hyphens: auto;
+	text-align: left;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.resultDate {
+	display: inline-block !important;
+	font-size: 2rem;
+	font-weight: 400;
+	padding-left: 0;
+}
+
+.resultDetail {
+	font-size: 1.2rem !important;
+	margin-bottom: 5px !important;
+	text-align: left !important;
+}
+
+.uvGreen {
+	background-color: rgb(62, 167, 45);
+	color: white;
+}
+
+.uvYello {
+	background-color: rgb(255, 243, 0);
+}
+
+.uvOrange {
+	background-color: rgb(241, 139, 0);
+}
+
+.uvRed {
+	background-color: rgb(229, 50, 16);
+	color: white;
+}
+
+.uvViolet {
+	background-color: rgb(181, 103, 164);
+	color: white;
+}
+
+.forcastRow {
+	max-width: 100% !important;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 0;
+	padding-right: 0;
+	text-align: left;
+}
+
+.forcastRow h2 {
+	font-weight: 300;
+}
+
+.forcastResult {
+	border: 1px solid rgb(120, 120, 120);
+	border-radius: 10px;
+	max-width: 100% !important;
+	color: rgb(90, 90, 90);
+}
+
+.forcastDate {
+	font-size: 1.5rem !important;
+}
+
+.forcastTemp {
+	font-size: 1.2rem !important;
+	margin-bottom: 10px;
+}
+
+.forcastHum {
+	font-size: 1.2rem !important;
+	margin-bottom: 10px;
+}
+
+@media screen and (max-width: 991px) {
+	html {
+		width: 100% !important;
+	}
+
+	.resultrowMain {
+		flex-direction: column;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	/* .resultDate {
+		display: flex !important;
+		align-items: flex-start !important;
+		justify-content: left !important;
+	} */
+}
+
+@media screen and (min-width: 992px) {
+	html {
+		width: 1400px;
+	}
+	.searchCity {
+		min-height: 500px;
+	}
+	.resultrowMain {
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+}
