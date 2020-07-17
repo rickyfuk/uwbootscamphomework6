@@ -28,6 +28,7 @@ $(document).ready(function () {
 
 	// when the search city button is click
 	$('.searchCityInputBtn').click(function () {
+		event.preventDefault();
 		// locate the city name
 		inputByUser = $('#searchCityInput').val();
 		console.log(inputByUser);
@@ -35,6 +36,7 @@ $(document).ready(function () {
 	});
 
 	$('.searchCityInputBtn').click(function () {
+		event.preventDefault();
 		if (listState !== 'notShow') {
 			$('.searchRecordList').addClass('d-none');
 			listState = 'notShow';
@@ -64,6 +66,7 @@ $(document).ready(function () {
 
 	// when the city in the search history list is click
 	$('.searchRecordSpan').click(function () {
+		event.preventDefault();
 		if (listState !== 'notShow') {
 			$('.searchRecordList').addClass('d-none');
 			listState = 'notShow';
