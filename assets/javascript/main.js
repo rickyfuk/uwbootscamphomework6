@@ -2,6 +2,8 @@ $(document).ready(function () {
 	// A default array to keep all the city selected
 	// var selectCity = [];
 	// var inputByUser;
+	var listState = $('.searchRecordList').attr('listShow');
+	console.log(listState);
 
 	// set the search button as white when the mouse enter the search button area
 	$('.searchCityInputBtn').mouseenter(function () {
@@ -24,19 +26,28 @@ $(document).ready(function () {
 		$('.searchCityInputBtn').blur();
 	});
 
-	// when the button is click
+	// when the search city button is click
 	$('.searchCityInputBtn').click(function () {
-		$('.searchRecordList').addClass('d-none');
 		// locate the city name
 		inputByUser = $('#searchCityInput').val();
 		console.log(inputByUser);
 		todayWeather();
 	});
 
+	$('.searchCityInputBtn').click(function () {
+		if (listState !== 'notShow') {
+			$('.searchRecordList').addClass('d-none');
+			listState = 'notShow';
+		}
+	});
+
 	// when the search city input box on focus in small screen size
 	// => take out the display none for showing the recent search result
 	$('#searchCityInput').focus(function () {
-		$('.searchRecordList').removeClass('d-none');
+		if (listState === 'notShow') {
+			$('.searchRecordList').removeClass('d-none');
+			listState = 'show';
+		}
 		// set the search city as bold when the mouse enter the city span
 		$('.searchRecordSpan').mouseenter(function () {
 			$(this).addClass('searchRecordHighlight');
@@ -45,12 +56,18 @@ $(document).ready(function () {
 
 	// hide the list again when the input box is user click somewhere outside the search city area
 	$('.searchCity').mouseleave(function () {
-		$('.searchRecordList').addClass('d-none');
+		if (listState !== 'notShow') {
+			$('.searchRecordList').addClass('d-none');
+			listState = 'notShow';
+		}
 	});
 
 	// when the city in the search history list is click
 	$('.searchRecordSpan').click(function () {
-		$('.searchRecordList').addClass('d-none');
+		if (listState !== 'notShow') {
+			$('.searchRecordList').addClass('d-none');
+			listState = 'notShow';
+		}
 		inputByUser = $(this).text();
 		console.log(inputByUser);
 		todayWeather();
