@@ -6,24 +6,24 @@ $(document).ready(function () {
 	console.log(listState);
 
 	// set the search button as white when the mouse enter the search button area
-	$('.searchCityInputBtnJS').mouseenter(function () {
-		console.log('search btn is changing color');
-		event.preventDefault();
-		$('.searchCityInputBtn').remove('.searchCityInputBtnImg1');
-		$('.searchCityInputBtn').html(
-			'<img class="searchCityInputBtnImg2" src="../uwbootscamphomework6/assets/images/searchWhite.png" srcset="../uwbootscamphomework6/assets/images/searchWhite.svg" alt="white search icon"/>'
-		);
-	});
+	// $('.searchCityInputBtnJS').mouseenter(function () {
+	// 	console.log('search btn is changing color');
+	// 	event.preventDefault();
+	// 	$('.searchCityInputBtn').remove('.searchCityInputBtnImg1');
+	// 	$('.searchCityInputBtn').html(
+	// 		'<img class="searchCityInputBtnImg2" src="../uwbootscamphomework6/assets/images/searchWhite.png" srcset="../uwbootscamphomework6/assets/images/searchWhite.svg" alt="white search icon"/>'
+	// 	);
+	// });
 
 	// reset the search button as blue when the mouse exit the search button area
-	$('.searchCityInputBtnJS').mouseleave(function () {
-		console.log('search btn is returning to orginal color');
-		event.preventDefault();
-		$('.searchCityInputBtn').remove('.searchCityInputBtnImg2');
-		$('.searchCityInputBtn').html(
-			'<img class="searchCityInputBtnImg1" src="../uwbootscamphomework6/assets/images/search.png" srcset="../uwbootscamphomework6/assets/images/search.svg" alt="blue search icon"/>'
-		);
-	});
+	// $('.searchCityInputBtnJS').mouseleave(function () {
+	// 	console.log('search btn is returning to orginal color');
+	// 	event.preventDefault();
+	// 	$('.searchCityInputBtn').remove('.searchCityInputBtnImg2');
+	// 	$('.searchCityInputBtn').html(
+	// 		'<img class="searchCityInputBtnImg1" src="../uwbootscamphomework6/assets/images/search.png" srcset="../uwbootscamphomework6/assets/images/search.svg" alt="blue search icon"/>'
+	// 	);
+	// });
 
 	// unfocus the button when it is not click
 	$('.searchCityInputBtnJS').mouseup(function blurInput() {
@@ -31,12 +31,13 @@ $(document).ready(function () {
 	});
 
 	// when the search city button is click
-	$('.searchCityInputBtnJS').click(function () {
+	$('.searchCityInputBtnJS').mousedown(function () {
+		event.preventDefault();
 		console.log('search btn is clickin');
 		// locate the city name
 		inputByUser = $('#searchCityInput').val();
 		console.log(inputByUser);
-		todayWeather();
+		showResult();
 	});
 
 	// // when the search city button is click
@@ -45,7 +46,7 @@ $(document).ready(function () {
 	// 	// locate the city name
 	// 	inputByUser = $('#searchCityInput').val();
 	// 	console.log(inputByUser);
-	// 	todayWeather();
+	// 	showResult();
 	// });
 
 	$('.searchCityInputBtnJS').mousedown(function () {
@@ -99,7 +100,7 @@ $(document).ready(function () {
 		}
 		inputByUser = $(this).text();
 		console.log(inputByUser);
-		todayWeather();
+		showResult();
 	});
 
 	// set the search city as bold when the mouse enter the city span

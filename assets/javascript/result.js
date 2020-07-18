@@ -11,8 +11,62 @@ function timeConverter(UNIX_timestamp) {
 	return finalDate;
 }
 
+// show UV index
+function uvIndex(lat, lon, APIKey) {
+	console.log(lat);
+	console.log(lon);
+	// Here we are building another URL for UV as we need to query another database
+	var queryURLUV =
+		'http://api.openweathermap.org/data/2.5/uvi?appid=' +
+		APIKey +
+		'&lat=' +
+		lat +
+		'&lon=' +
+		lon;
+
+	console.log(queryURLUV);
+
+	// use ajax to call the city weather deatils
+	$.ajax({
+		url: queryURLUV,
+		method: 'GET',
+	}).then(function (responseUV) {
+		console.log(responseUV);
+		// save the uv value into uvValue
+		uvValue = responseUV.value;
+		// round the uv value into uvValueRound
+		uvValueRound = Math.round(uvValue);
+		// create a div for the UV result
+		var todayUV = $('<div>');
+		// add class for temp result
+		$(todayUV).addClass('resultDetail row col-12');
+		$(todayUV).attr('id', 'resultRowUV');
+		// add the UV value to the todayUV
+		$(todayUV).html(
+			'<span>UV index : ' +
+				'<span class="resultUV">' +
+				uvValue +
+				'</span> </span>'
+		);
+		// append humidity Div to resultToday Div
+		$('#resultTodayrow').append(todayUV);
+		// add class for different uv index to add the color background color
+		if (uvValueRound < 3) {
+			$('.resultUV').addClass('uvGreen');
+		} else if (uvValueRound < 6) {
+			$('.resultUV').addClass('uvYellow');
+		} else if (uvValueRound < 8) {
+			$('.resultUV').addClass('uvOrange');
+		} else if (uvValueRound < 11) {
+			$('.resultUV').addClass('uvRed');
+		} else {
+			$('.resultUV').addClass('uvViolet');
+		}
+	});
+}
+
 // function for look up the weather for the city from the database
-function todayWeather() {
+function showResult() {
 	$('.showResult').empty();
 	// This is our API key
 	var APIKey = '73c25ad71b995c66d607f5fb411cc629';
@@ -135,51 +189,7 @@ function todayWeather() {
 		coorLat = response.coord.lat;
 		coorLon = response.coord.lon;
 
-		// Here we are building another URL for UV as we need to query another database
-		var queryURLUV =
-			'http://api.openweathermap.org/data/2.5/uvi?appid=' +
-			APIKey +
-			'&lat=' +
-			coorLat +
-			'&lon=' +
-			coorLon;
-
-		// use ajax to call the city weather deatils
-		$.ajax({
-			url: queryURLUV,
-			method: 'GET',
-		}).then(function (responseUV) {
-			console.log(responseUV);
-			// save the uv value into uvValue
-			uvValue = responseUV.value;
-			// round the uv value into uvValueRound
-			uvValueRound = Math.round(uvValue);
-			// create a div for the UV result
-			var todayUV = $('<div>');
-			// add class for temp result
-			$(todayUV).addClass('resultDetail row col-12');
-			$(todayUV).attr('id', 'resultRowUV');
-			// add the UV value to the todayUV
-			$(todayUV).html(
-				'<span>UV index : ' +
-					'<span class="resultUV">' +
-					uvValue +
-					'</span> </span>'
-			);
-			// append humidity Div to resultToday Div
-			$('#resultTodayrow').append(todayUV);
-			// add class for different uv index to add the color background color
-			if (uvValueRound < 3) {
-				$('.resultUV').addClass('uvGreen');
-			} else if (uvValueRound < 6) {
-				$('.resultUV').addClass('uvYellow');
-			} else if (uvValueRound < 8) {
-				$('.resultUV').addClass('uvOrange');
-			} else if (uvValueRound < 11) {
-				$('.resultUV').addClass('uvRed');
-			} else {
-				$('.resultUV').addClass('uvViolet');
-			}
-		});
+		uvIndex(coorLat, coorLon, APIKey);
+		forcastWeather(coorLat, coorLon, APIKey);
 	});
 }

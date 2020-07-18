@@ -154,25 +154,27 @@ header h1 {
 
 .uvGreen {
 	background-color: rgb(62, 167, 45);
-	color: white;
+	color: rgb(225, 225, 225);
 }
 
 .uvYello {
 	background-color: rgb(255, 243, 0);
+	color: rgb(120, 120, 120);
 }
 
 .uvOrange {
 	background-color: rgb(241, 139, 0);
+	color: rgb(225, 225, 225);
 }
 
 .uvRed {
 	background-color: rgb(229, 50, 16);
-	color: white;
+	color: rgb(225, 225, 225);
 }
 
 .uvViolet {
 	background-color: rgb(181, 103, 164);
-	color: white;
+	color: rgb(225, 225, 225);
 }
 
 .forcastRow {
