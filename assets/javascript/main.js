@@ -31,9 +31,8 @@ $(document).ready(function () {
 	});
 
 	// when the search city button is click
-	$('.searchCityInputBtnJS').mousedown(function () {
+	$('.searchCityInputBtnJS').click(function () {
 		console.log('search btn is clickin');
-		event.stopPropagation();
 		// locate the city name
 		inputByUser = $('#searchCityInput').val();
 		console.log(inputByUser);
@@ -73,8 +72,17 @@ $(document).ready(function () {
 	});
 
 	// hide the list again when the input box is user click somewhere outside the search city area
-	$('#searchCityInput').on('pointerout', function () {
-		console.log('pointout is running');
+	// $('#searchCityInput').on('pointerout', function () {
+	// 	console.log('pointout is running');
+	// 	event.preventDefault();
+	// 	if (listState !== 'notShow') {
+	// 		$('.searchRecordList').addClass('d-none');
+	// 		listState = 'notShow';
+	// 	}
+	// });
+
+	$('#searchCityInput').focusout(function () {
+		console.log('focusout is running');
 		event.preventDefault();
 		if (listState !== 'notShow') {
 			$('.searchRecordList').addClass('d-none');
