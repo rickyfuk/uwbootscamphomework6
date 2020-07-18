@@ -30,6 +30,7 @@ function todayWeather() {
 		url: queryURL,
 		method: 'GET',
 	}).then(function (response) {
+		console.log(response);
 		// Create a div to hold the response
 		var todayDiv0 = $('<div>');
 		// append the todayDiv0 to resultToday Div
@@ -67,7 +68,7 @@ function todayWeather() {
 		// add id and class for todaySpanDate
 		$(todaySpanDate).addClass('resultDate py-lg-auto');
 		// add the date to the todaySpanDate
-		var finalDate = timeConverter(response.dt);
+		var finalDate = timeConverter(response.dt + response.timezone);
 		$(todaySpanDate).text(' (' + finalDate + ')');
 		// append the todaySpanDate into the todayH2
 		$('.resultrowMain').append(todaySpanDate);

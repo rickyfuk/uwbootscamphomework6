@@ -27,7 +27,6 @@ $(document).ready(function () {
 
 	// unfocus the button when it is not click
 	$('.searchCityInputBtnJS').mouseup(function blurInput() {
-		// event.preventDefault();
 		$('.searchCityInputBtn').blur();
 	});
 
@@ -35,7 +34,6 @@ $(document).ready(function () {
 	$('.searchCityInputBtnJS').mousedown(function () {
 		console.log('search btn is clickin');
 		event.stopPropagation();
-		// event.preventDefault();
 		// locate the city name
 		inputByUser = $('#searchCityInput').val();
 		console.log(inputByUser);
@@ -75,7 +73,7 @@ $(document).ready(function () {
 	});
 
 	// hide the list again when the input box is user click somewhere outside the search city area
-	$('#searchCityInput').on('pointerin', function () {
+	$('#searchCityInput').on('pointerout', function () {
 		console.log('pointout is running');
 		event.preventDefault();
 		if (listState !== 'notShow') {
