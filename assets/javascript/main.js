@@ -72,14 +72,14 @@ $(document).ready(function () {
 	});
 
 	// hide the list again when the input box is user click somewhere outside the search city area
-	// $('#searchCityInput').on('pointerout', function () {
-	// 	console.log('pointout is running');
-	// 	event.preventDefault();
-	// 	if (listState !== 'notShow') {
-	// 		$('.searchRecordList').addClass('d-none');
-	// 		listState = 'notShow';
-	// 	}
-	// });
+	$('#searchCityInput').on('pointerout', function () {
+		console.log('pointout is running');
+		event.preventDefault();
+		if (listState !== 'notShow') {
+			$('.searchRecordList').addClass('d-none');
+			listState = 'notShow';
+		}
+	});
 
 	$('#searchCityInput').focusout(function () {
 		console.log('focusout is running');
