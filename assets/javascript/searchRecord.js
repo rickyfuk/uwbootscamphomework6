@@ -77,7 +77,7 @@ function saveToLocalStroage() {
 }
 
 function displayRecordList() {
-	// empty the list if any
+	// empty the list
 	$('.searchRecordList').empty();
 	// load data from local stroage
 	loadFromLocalStroage();

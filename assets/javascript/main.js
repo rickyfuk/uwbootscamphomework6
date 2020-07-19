@@ -96,7 +96,7 @@ $(document).ready(function () {
 	});
 
 	// when the city in the search history list is click
-	$('.searchRecordSpan').on('click', 'span', function () {
+	$('.searchRecordSpan').on('click', function () {
 		event.preventDefault();
 		// change the arrow button direction and show the list
 		if (listState !== 'notShow') {
