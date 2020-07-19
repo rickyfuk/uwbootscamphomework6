@@ -5,55 +5,47 @@ $(document).ready(function () {
 	var listState = $('.searchRecordList').attr('listShow');
 	console.log(listState);
 
-	// set the search button as white when the mouse enter the search button area
-	// $('.searchCityInputBtnJS').mouseenter(function () {
-	// 	console.log('search btn is changing color');
-	// 	event.preventDefault();
-	// 	$('.searchCityInputBtn').remove('.searchCityInputBtnImg1');
-	// 	$('.searchCityInputBtn').html(
-	// 		'<img class="searchCityInputBtnImg2" src="../uwbootscamphomework6/assets/images/searchWhite.png" srcset="../uwbootscamphomework6/assets/images/searchWhite.svg" alt="white search icon"/>'
-	// 	);
-	// });
-
-	// reset the search button as blue when the mouse exit the search button area
-	// $('.searchCityInputBtnJS').mouseleave(function () {
-	// 	console.log('search btn is returning to orginal color');
-	// 	event.preventDefault();
-	// 	$('.searchCityInputBtn').remove('.searchCityInputBtnImg2');
-	// 	$('.searchCityInputBtn').html(
-	// 		'<img class="searchCityInputBtnImg1" src="../uwbootscamphomework6/assets/images/search.png" srcset="../uwbootscamphomework6/assets/images/search.svg" alt="blue search icon"/>'
-	// 	);
-	// });
-
 	// unfocus the button when it is not click
-	$('.searchCityInputBtnJS').mouseup(function blurInput() {
-		$('.searchCityInputBtn').blur();
+	$('.searchCityInputBtn').mouseup(function () {
+		$(this).blur();
 	});
 
 	// when the search city button is click
 	$('.searchCityInputBtnJS').mousedown(function () {
 		event.preventDefault();
+		// hide the search list and change the arrow from up to down
+		if (listState !== 'notShow') {
+			$('.searchRecordList').addClass('d-none');
+			listState = 'show';
+			$('.dropDownIcon').removeClass('fa-angle-double-up');
+			$('.dropDownIcon').addClass('fa-angle-double-down');
+		}
 		console.log('search btn is clickin');
-		// locate the city name
+		// locate the city name and run weather result
 		inputByUser = $('#searchCityInput').val();
 		console.log(inputByUser);
 		showResult();
 	});
 
-	// // when the search city button is click
-	// $('.searchCityInputBtn').click(function () {
-	// 	event.preventDefault();
-	// 	// locate the city name
-	// 	inputByUser = $('#searchCityInput').val();
-	// 	console.log(inputByUser);
-	// 	showResult();
-	// });
+	// unfocus the drop Down ICON button when it is not click
+	$('.dropDownIconBtn').mouseup(function () {
+		$(this).blur();
+	});
 
-	$('.searchCityInputBtnJS').mousedown(function () {
+	// when the search city button is click
+	$('.dropDownIconBtn').mousedown(function () {
 		event.preventDefault();
-		if (listState !== 'notShow') {
+		console.log('drop down icon btn is clickin');
+		if (listState === 'notShow') {
+			$('.searchRecordList').removeClass('d-none');
+			listState = 'show';
+			$('.dropDownIcon').removeClass('fa-angle-double-down');
+			$('.dropDownIcon').addClass('fa-angle-double-up');
+		} else {
 			$('.searchRecordList').addClass('d-none');
 			listState = 'notShow';
+			$('.dropDownIcon').removeClass('fa-angle-double-up');
+			$('.dropDownIcon').addClass('fa-angle-double-down');
 		}
 	});
 
@@ -64,6 +56,8 @@ $(document).ready(function () {
 		if (listState === 'notShow') {
 			$('.searchRecordList').removeClass('d-none');
 			listState = 'show';
+			$('.dropDownIcon').removeClass('fa-angle-double-down');
+			$('.dropDownIcon').addClass('fa-angle-double-up');
 		}
 		// set the search city as bold when the mouse enter the city span
 		$('.searchRecordSpan').mouseenter(function () {
@@ -79,6 +73,8 @@ $(document).ready(function () {
 		if (listState !== 'notShow') {
 			$('.searchRecordList').addClass('d-none');
 			listState = 'notShow';
+			$('.dropDownIcon').removeClass('fa-angle-double-up');
+			$('.dropDownIcon').addClass('fa-angle-double-down');
 		}
 	});
 
@@ -88,6 +84,8 @@ $(document).ready(function () {
 		if (listState !== 'notShow') {
 			$('.searchRecordList').addClass('d-none');
 			listState = 'notShow';
+			$('.dropDownIcon').removeClass('fa-angle-double-up');
+			$('.dropDownIcon').addClass('fa-angle-double-down');
 		}
 	});
 
@@ -97,6 +95,8 @@ $(document).ready(function () {
 		if (listState !== 'notShow') {
 			$('.searchRecordList').addClass('d-none');
 			listState = 'notShow';
+			$('.dropDownIcon').removeClass('fa-angle-double-up');
+			$('.dropDownIcon').addClass('fa-angle-double-down');
 		}
 		inputByUser = $(this).text();
 		console.log(inputByUser);

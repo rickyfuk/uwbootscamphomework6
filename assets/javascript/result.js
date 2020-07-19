@@ -129,9 +129,9 @@ function showResult() {
 
 		// Create a span tag to hold the weather icon inside the h2 tag
 		var todaySpanWeatherIcon = $('<span>');
-		iconCode = response.weather[0].icon;
-		imgURL = 'http://openweathermap.org/img/wn/' + iconCode + '@2x.png';
-		iconDescription = response.weather[0].description;
+		var iconCode = response.weather[0].icon;
+		var imgURL = 'http://openweathermap.org/img/wn/' + iconCode + '@2x.png';
+		var iconDescription = response.weather[0].description;
 		var iconImage = $('<img>').attr({ src: imgURL, alt: iconDescription });
 		// append the image to weather icon span
 		$(todaySpanWeatherIcon).append(iconImage);
