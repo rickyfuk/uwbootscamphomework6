@@ -1,9 +1,15 @@
 $(document).ready(function () {
-	// A default array to keep all the city selected
-	// var selectCity = [];
-	// var inputByUser;
+	// get the orignal list-state from html
 	var listState = $('.searchRecordList').attr('listShow');
-	console.log(listState);
+	// run the geolocation weather (not done yet)
+	// defaultResult();
+	// run the load previous search result for the first time
+	displayRecordList();
+
+	if (searchCityRecordArr.length > 0) {
+		inputByUser = searchCityRecordArr[searchCityRecordArr.length - 1];
+		showResult();
+	}
 
 	// unfocus the button when it is not click
 	$('.searchCityInputBtn').mouseup(function () {
@@ -90,8 +96,9 @@ $(document).ready(function () {
 	});
 
 	// when the city in the search history list is click
-	$('.searchRecordSpan').click(function () {
+	$('.searchRecordSpan').on('click', 'span', function () {
 		event.preventDefault();
+		// change the arrow button direction and show the list
 		if (listState !== 'notShow') {
 			$('.searchRecordList').addClass('d-none');
 			listState = 'notShow';
@@ -99,6 +106,8 @@ $(document).ready(function () {
 			$('.dropDownIcon').addClass('fa-angle-double-down');
 		}
 		inputByUser = $(this).text();
+		// clear the input box content
+		$('#searchCityInput').val('');
 		console.log(inputByUser);
 		showResult();
 	});

@@ -49,11 +49,12 @@
 			<div class="container mainContianer pd-0 mx-0">
 				<div class="row">
 					<!-- search city bar -->
-					<div class="col-12 col-lg-3 pt-3 px-0 searchCity">
+					<div class="col-12 col-lg-3 pt-3 px-0 pb-4 searchCity">
 						<div class="col-12 searchCityHead">
 							Search for a city :
 						</div>
 						<div class="col-12 pr-lg-5 input-group mb-0">
+							<!-- input box for the user to enter the city name -->
 							<input
 								type="text"
 								class="form-control"
@@ -62,6 +63,7 @@
 								aria-describedby="button-addon2"
 								id="searchCityInput"
 							/>
+							<!-- search button -->
 							<div class="input-group-append searchCityInputBtnJS">
 								<button
 									class="btn btn-outline-primary searchCityInputBtn"
@@ -74,8 +76,9 @@
 									></i>
 								</button>
 							</div>
+							<!-- down arrow button for the small screen to show the recent search result -->
 							<div
-								class="dropDownIconDiv col-12 text-center pb-0 pt-0 pt-lg-3 d-lg-none"
+								class="dropDownIconDiv col-12 text-center pb-0 pt-0 pt-lg-3 d-none d-lg-none"
 							>
 								<button class="btn dropDownIconBtn" type="button">
 									<i
@@ -84,9 +87,10 @@
 									></i>
 								</button>
 							</div>
+							<!-- the search record layout -->
 						</div>
 						<ul
-							class="col-12 pt-lg-3 pt-0 d-none d-lg-block searchRecordList"
+							class="col-12 pt-lg-3 pt-0 d-none searchRecordList"
 							listShow="notShow"
 						>
 							<li class="searchRecordHead" id="searchRecordHead">
@@ -115,70 +119,14 @@
 					<!-- show search city data -->
 					<div class="showResult col-12 col-lg-9 pt-3">
 						<!-- today weather -->
-						<!-- use for testing ultra long city name -->
-						<!-- <span class="resultCityname display-4 mb-2 mr-lg-2"
-																	>XXXXX XXXXXXXXXXXXXXXXXXXXX XXX</span
-																> -->
-						<!-- <div class="col-12 resultToday"></div> -->
 						<!-- 5 days forcast -->
-						<div class="col-12 row forcastRow">
-							<!-- <div class="col-12 my-3">
-								<h2>5-Days Forcast</h2>
-							</div>
-							<div
-								class="forcastResult forcast1 col-12 mb-3 mr-lg-3 col-lg-2 pt-lg-2"
-							>
-								<div class="row">
-									<div
-										id="forcastDate1"
-										class="forcastResultDetail forcastDate col-3 col-lg-12"
-									>
-										12/55/2020
-									</div>
-									<div
-										id="forcastIcon1"
-										class="forcastResultDetail forcastIcon col-2 px-0 col-lg-12"
-									>
-										<img
-											src="http://openweathermap.org/img/wn/10d.png"
-											alt="weather icon"
-										/>
-									</div>
-									<div
-										id="forcastTemp1"
-										class="forcastResultDetail forcastTemp px-0 px-lg-3 col-4 col-lg-12"
-									>
-										Temperture :
-										<span class="forcastTempResult1"> 90.9</span>
-										°F
-									</div>
-									<div
-										id="forcastHum1"
-										class="forcastResultDetail forcastHum px-0 px-lg-3 col-3 col-lg-12"
-									>
-										Humidity : <span class="forcastHumResult1"> 41%</span>
-									</div>
-								</div>
-							</div>
-							<div class="forcastResult forcast2 col-12 col-lg-2">
-								SSS
-							</div>
-							<div class="forcastResult forcast3 col-12 col-lg-2">
-								SSS
-							</div>
-							<div class="forcastResult forcast4 col-12 col-lg-2">
-								SSS
-							</div>
-							<div class="forcastResult forcast5 col-12 col-lg-2">
-								SSS
-							</div> -->
-						</div>
 					</div>
 				</div>
 			</div>
 		</main>
 		<script src="assets/javascript/result.js"></script>
 		<script src="assets/javascript/forcast.js"></script>
+		<script src="assets/javascript/searchRecord.js"></script>
 		<script src="assets/javascript/main.js"></script>
 	</body>
 </html>

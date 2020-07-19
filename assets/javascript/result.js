@@ -1,4 +1,4 @@
-var selectCity = [];
+// global variable
 var inputByUser;
 
 // convert the UNIX time to a date
@@ -67,6 +67,7 @@ function uvIndex(lat, lon, APIKey) {
 
 // function for look up the weather for the city from the database
 function showResult() {
+	// empty the previous search result
 	$('.showResult').empty();
 	// This is our API key
 	var APIKey = '73c25ad71b995c66d607f5fb411cc629';
@@ -188,8 +189,10 @@ function showResult() {
 
 		coorLat = response.coord.lat;
 		coorLon = response.coord.lon;
+		cityName = response.name;
 
 		uvIndex(coorLat, coorLon, APIKey);
 		forcastWeather(coorLat, coorLon, APIKey);
+		saveTheList(cityName);
 	});
 }
