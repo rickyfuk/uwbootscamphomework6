@@ -47,8 +47,7 @@ function forcastWeather(lat, lon, APIKey) {
 
 		// inside the for loop to repeat the forcast 5 times
 		for (i = 1; i < 6; i++) {
-			console.log(response);
-			console.log(response.daily[i].dt);
+			// convert the time from Unix time to normal calender time (function - Result1)
 			finalForcastDate[i] = timeConverter(
 				response.daily[i].dt + response.timezone_offset
 			);

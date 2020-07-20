@@ -4,7 +4,7 @@ var inputByUser;
 // get the orignal list-state from html
 var listState = $('.searchRecordList').attr('listShow');
 
-// convert the UNIX time to a date
+// function Result1 - convert the UNIX time to a date
 function timeConverter(UNIX_timestamp) {
 	var a = new Date(UNIX_timestamp * 1000);
 	var year = a.getFullYear();
@@ -14,10 +14,8 @@ function timeConverter(UNIX_timestamp) {
 	return finalDate;
 }
 
-// show UV index
+// function Result2 - show UV index
 function uvIndex(lat, lon, APIKey) {
-	console.log(lat);
-	console.log(lon);
 	// Here we are building another URL for UV as we need to query another database
 	var queryURLUV =
 		'http://api.openweathermap.org/data/2.5/uvi?appid=' +
@@ -27,9 +25,7 @@ function uvIndex(lat, lon, APIKey) {
 		'&lon=' +
 		lon;
 
-	console.log(queryURLUV);
-
-	// use ajax to call the city weather deatils
+	// use ajax to call the UV deatils
 	$.ajax({
 		url: queryURLUV,
 		method: 'GET',
@@ -51,7 +47,7 @@ function uvIndex(lat, lon, APIKey) {
 				uvValue +
 				'</span> </span>'
 		);
-		// append humidity Div to resultToday Div
+		// append UV Div to resultToday Div
 		$('#resultTodayrow').append(todayUV);
 		// add class for different uv index to add the color background color
 		if (uvValueRound < 3) {
@@ -68,6 +64,7 @@ function uvIndex(lat, lon, APIKey) {
 	});
 }
 
+// function Result 3 - run default search when nothing has been search yet (by user geolocation)
 function defaultResult() {
 	// empty the previous search result
 	$('.showResult').empty();
@@ -99,14 +96,13 @@ function defaultResult() {
 			lon +
 			'&appid=' +
 			APIKey;
-
+		// run showResultAjax for all the Ajax and layout building (function - Result5)
 		showResultAjax(queryURL, APIKey);
 	}
 
 	// when the location load unsuccessfully
 	function error(err) {
 		console.warn(`ERROR(${err.code}): ${err.message}`);
-
 		// Create a h2 tag to hold the city name/date/weather icon
 		var todayH2 = $('<h2>');
 		// add class for todayh2
@@ -123,11 +119,11 @@ function defaultResult() {
 		// append todaySpanCity into todayH2
 		$('.resultrowMain').append(todaySpanCity);
 	}
-
+	// run the geolocation API
 	navigator.geolocation.getCurrentPosition(success, error, options);
 }
 
-// function for look up the weather for the city from the database
+// function Result4 - look up the weather for the city from the database
 function showResult() {
 	// empty the previous search result
 	$('.showResult').empty();
@@ -141,10 +137,11 @@ function showResult() {
 		inputByUser +
 		'&appid=' +
 		APIKey;
-
+	// run showResultAjax for all the Ajax and layout building (function - Result5)
 	showResultAjax(queryURL, APIKey);
 }
 
+// function Result5 - run the ajax fot today weather and build the today layout
 function showResultAjax(queryURL, APIKey) {
 	// use ajax to call the city weather deatils
 	$.ajax({
@@ -189,6 +186,7 @@ function showResultAjax(queryURL, APIKey) {
 		// add id and class for todaySpanDate
 		$(todaySpanDate).addClass('resultDate py-lg-auto');
 		// add the date to the todaySpanDate
+		// convert the time from Unix time to normal calender time (function - Result1)
 		var finalDate = timeConverter(response.dt + response.timezone);
 		$(todaySpanDate).text(' (' + finalDate + ')');
 		// append the todaySpanDate into the todayH2
@@ -253,12 +251,17 @@ function showResultAjax(queryURL, APIKey) {
 		// append humidity Div to resultToday Div
 		$('#resultTodayrow').append(todayWindSpeed);
 
+		// get the coorinate for UV and forcast query
 		coorLat = response.coord.lat;
 		coorLon = response.coord.lon;
+		// get the official city name and put into search result list
 		cityName = response.name;
 
+		// show UV index (function - Result2)
 		uvIndex(coorLat, coorLon, APIKey);
+		// run forcast weather => show and build forcast weather layout
 		forcastWeather(coorLat, coorLon, APIKey);
+		// save the current search into the search history array
 		saveTheList(cityName);
 	});
 }

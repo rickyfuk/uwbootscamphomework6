@@ -1,7 +1,7 @@
 // global variable
 var searchCityRecordArr = [];
 
-// function  - load the select date from session stroage and so it will not being lose when reload the window
+// function searchRec1 - load the select date from session stroage and so it will not being lose when reload the window
 function loadFromLocalStroage() {
 	var storedDateResult = JSON.parse(
 		localStorage.getItem('searchWeatherCityList')
@@ -29,12 +29,12 @@ function loadFromLocalStroage() {
 		$(listSpan1).text('Recent Search :');
 		$('.searchRecordHead').append(listSpan1);
 	} else {
-		// run the geolocation weather
+		// run default search with user geolocation - (function - Result 3)
 		defaultResult();
 	}
 }
 
-// function  - clear duplicate and store the result to local storage
+// function searchRec2 - clear duplicate and store the result to local storage
 function saveToLocalStroage() {
 	// 1. find the dup item
 	var findDup = function (arr) {
@@ -82,7 +82,7 @@ function saveToLocalStroage() {
 function displayRecordList() {
 	// empty the list
 	$('.searchRecordList').empty();
-	// load data from local stroage
+	// load data from local stroage (function - searchRec1)
 	loadFromLocalStroage();
 	// display all the city in the searchCityRecordArr
 	for (let j = 0; j < Math.min(searchCityRecordArr.length, 16); j++) {
