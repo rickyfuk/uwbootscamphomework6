@@ -1,4 +1,4 @@
-// function for look up the weather for the city from the database
+// function Forcast1 - look up the weather for the city from the database
 function forcastWeather(lat, lon, APIKey) {
 	// create a div for the forcast main header
 	var forcastHeader = $('<div>');
@@ -93,10 +93,11 @@ function forcastWeather(lat, lon, APIKey) {
 			$(forcastResultIcon).attr('id', 'forcastIcon' + i);
 			// append the forcast result Icon div to forcastResultRow1 div
 			$(forcastResultRow1).append(forcastResultIcon);
-			// Create an img tag to hold the weather icon inside the result icon div
+			// prepare all the img information for the img tag
 			iconCode[i] = response.daily[i].weather[0].icon;
 			imgURL[i] = 'http://openweathermap.org/img/wn/' + iconCode[i] + '.png';
 			iconDescription[i] = response.daily[i].weather[0].description;
+			// Create an img tag to hold the weather icon inside the result icon div
 			focasticonImage[i] = $('<img>').attr({
 				src: imgURL[i],
 				alt: iconDescription[i],

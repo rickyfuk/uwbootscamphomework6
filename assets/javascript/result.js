@@ -64,7 +64,7 @@ function uvIndex(lat, lon, APIKey) {
 	});
 }
 
-// function Result 3 - run default search when nothing has been search yet (by user geolocation)
+// function Result3 - run default search when nothing has been search yet (by user geolocation)
 function defaultResult() {
 	// empty the previous search result
 	$('.showResult').empty();
@@ -259,9 +259,9 @@ function showResultAjax(queryURL, APIKey) {
 
 		// show UV index (function - Result2)
 		uvIndex(coorLat, coorLon, APIKey);
-		// run forcast weather => show and build forcast weather layout
+		// run forcast weather => show and build forcast weather layout (function - Forcast1)
 		forcastWeather(coorLat, coorLon, APIKey);
-		// save the current search into the search history array
+		// save the current search into the search history array ( function - searchRec4)
 		saveTheList(cityName);
 	});
 }

@@ -79,15 +79,28 @@ Standard
 
 ## <span style="color: rgb(220, 105, 1);"> Description for the code</span>
 
-A general description for the every section on the top of the code to breifly explain the puopose of that section and some note for the section details.
+A general description (the commented code) for the every section on the top of the code to breifly explain the puopose of that section and some note for the section details.
 
   <div>
   <img src="assets/images/descriptionexample.png" alt="Description Example">
    *example for the section description*
   </div>
 
-For easier reference, the location of the function will place inside its description
+For easier reference, every function has assigned a location name in the comment (e.g. "function - Result5" for the example below)
 ![functionlocation](assets/images/functionlocation.png)
+
+Also, the location of the function will place inside its description when it is executed
+![functionlocation2](assets/images/functionlocation2.png)
+
+Below is the further explanation for the description:
+
+| function name start with | location of the function |
+| :----------------------: | :----------------------: |
+|        searchRec         |     searchRecord.js      |
+|          Result          |        result.js         |
+|         Forcast          |        forcast.js        |
+
+Please note that all the function is in a numbered ordered.
 
 # Technology
 
@@ -123,101 +136,80 @@ Below are the description for all local files:
 
 Below are some example for the code has been used and the corresponding outcome:
 
-1. To activiate the datepicker
-   ```Javascript
-           	// add the datepicker for the date selection
-               $('#datepicker').datepicker({
-                   changeMonth: true,
-                   changeYear: true,
-               });
-   ```
-2. To add the datepicker function, the following link and script files are required
-
-   ```html
-   <!-- jquery UI CSS for "DatePicker" -->
-   > > > > >
-   ```
-
-3. To avoid the overloading for the array to save the data, the date has been added for the key name when the data is saving into the local stroage
-   ```Javascript
-       // for saving the data into the local stroage
-       localStorage.setItem(
-   		'dayplannerDataArray' + selectDateSave,
-   		JSON.stringify(saveDataArrayFinal)
-       );
-       // for loading the date from the local stroage
-       var storedResult = JSON.parse(
-   		localStorage.getItem('dayplannerDataArray' + selectDateSave)
-   	);
-   ```
-4. To avoid the overloading for the array to save the data, the following scripts added to remove the duplicated hours object where it had been save before
-   ```Javascript
-       // remove the duplicated data record
-   	// (i.e.) if original textcontent for Jul-1-2020 3pm is ABC =>
-   	// 		  and now the user input CBA =>
-   	//        then CBA will replace ABC and the ABC object will remove from the array
-   	// the purpose is to reduce the size of the array when the user repeat input a lot of times
-   	// to do that we need the following 5 steps:
-   	// 1. set up a temp arr
-   	var temparr = saveDataArray.map(function (a) {
-   		return a.saveDataHour;
-   	});
-   	// 2. find the dup item
-   	var findDup = function (arr) {
-   		let dups = [];
-   		let compare = [];
-   		for (a = 0; a < arr.length; a++) {
-   			if (compare.includes(arr[a])) {
-   				dups.push(arr[a]);
-   			} else {
-   				compare.push(arr[a]);
-   				console.log(compare);
-   			}
-   		}
-   		return compare;
-   	};
-   	// 3. find the last index for the dup item
-   	var lastIndex = function (arr1, arr2) {
-   		let lastIndexArr = [];
-   		for (b = 0; b < arr2.length; b++) {
-   			let num = arr1.lastIndexOf(arr2[b]);
-   			lastIndexArr.push(num);
-   		}
-   		return lastIndexArr;
-   	};
-   	// 4. only get the last time to the final array
-   	var removeDup = function (arr1, arr2) {
-   		let finalResult = [];
-   		for (c = 0; c < arr2.length; c++) {
-   			finalResult.push(arr1[arr2[c]]);
-   		}
-   		return finalResult;
-   	};
-   	// 5. return the final result for saving
-   	saveDataArrayFinal = removeDup(
-   		saveDataArray,
-   		lastIndex(temparr, findDup(temparr))
-   	);
-   ```
-5. In order to make the date selection works, the page will reload after the user press "Go" button and the date will save into the session stroage. Below is an example for storing the select date in session stroage
+1. To add an event listener by Jquery to a dynamic gernerate element, an another inner function is required
 
    ```Javascript
-      // saving the select date to session stroage
-      $('#selectDateBtn').on('click', function () {
-          event.preventDefault();
-          // store the new date in the selectDate
-          sessionStorage.setItem('changeDate', JSON.stringify(selectDate));
-          // reload the page
-          location.reload(true);
-      });
+     // reset the search city as normal when the mouse exit the city span
+        $('.searchRecordList').on('mouseleave', '.searchRecordSpan', function () {
+            event.preventDefault();
+            $(this).removeClass('searchRecordHighlight');
+        });
+   ```
 
-      // load the select date from session stroage
-      function loadFromDateSessionStroage() {
-          var storedDateResult = JSON.parse(sessionStorage.getItem('changeDate'));
-          if (storedDateResult !== null) {
-              selectDate = storedDateResult;
-          }
-      }
+2. To make the list only show the searched city once, remove duplicate and sorted the array have done everytime when the page load and/or user search a new city
+
+   ```Javascript
+        // Part 0 - Rearrange the array order
+    	// add the city name in the searchCityRecord array
+        searchCityRecordArr.push(cityName);
+        // set the sort array
+        let sortArray = [];
+        // put the last item to the first place inside the array
+        sortArray[0] = searchCityRecordArr[searchCityRecordArr.length - 1];
+        // put the rest of the item into the next postion to their orignal one
+        for (let k = 0; k < searchCityRecordArr.length - 1; k++) {
+            sortArray[k + 1] = searchCityRecordArr[k];
+        }
+        // change the searchCityRecordArr content as the sortArray
+        searchCityRecordArr = sortArray;
+   ```
+
+   ```Javascript
+        // part 1 - set an array var for finding the dup item
+        var findDup = function (arr) {
+            let dups = [];
+            let compare = [];
+            for (a = 0; a < arr.length; a++) {
+                if (compare.includes(arr[a])) {
+                    dups.push(arr[a]);
+                } else {
+                    compare.push(arr[a]);
+                    console.log(compare);
+                }
+            }
+            return compare;
+        };
+        // part 2 - set an array var for finding the first index for the dup item
+        var firstIndex = function (arr1, arr2) {
+            let firstIndexArr = [];
+            for (b = 0; b < arr2.length; b++) {
+                let num = arr1.indexOf(arr2[b]);
+                firstIndexArr.push(num);
+            }
+            return firstIndexArr;
+        };
+
+        // part 3 - set an array var for only get the first time to the final array
+        var removeDup = function (arr1, arr2) {
+            let finalResult = [];
+            for (c = 0; c < arr2.length; c++) {
+                finalResult.push(arr1[arr2[c]]);
+            }
+            return finalResult;
+        };
+
+        // part 4 - set a var for return the final result for saving
+        var saveCityListArrayFinal = removeDup(
+            searchCityRecordArr,
+            firstIndex(searchCityRecordArr, findDup(searchCityRecordArr))
+        );
+   ```
+
+3. The geolocation is run by the following script
+
+   ```Javascript
+        // run the geolocation API
+        navigator.geolocation.getCurrentPosition(success, error, options);
    ```
 
 # Test
@@ -234,8 +226,9 @@ Project status: finished
 Plan for the future development of this site:
 
 1. The user can click the different data box and the details weather data for that day will show up on the main box.
-2. Set up an option page for the user to choose the parameter (e.g. wind speed - MPH/Knt)
-3. Connect more API with the location (e.g. news/yelp)
+2. enhance the search box with an autocompleted function when the user type part of the city name
+3. Set up an option page for the user to choose the parameter (e.g. wind speed - MPH/Knt)
+4. Connect more API with the location (e.g. news/yelp)
 
 # Create By
 

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	// run the load previous search result for the first time
+	// display the searchcityrecord list (function - searchRec3)
 	displayRecordList();
 	// when the user return to the application => check if any previous usage
 	// if yes => pull the last seen city as the city input and load the result (acceptance criteria)

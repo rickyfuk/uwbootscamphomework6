@@ -36,7 +36,7 @@ function loadFromLocalStroage() {
 
 // function searchRec2 - clear duplicate and store the result to local storage
 function saveToLocalStroage() {
-	// 1. find the dup item
+	// part 1 - set an array var for finding the dup item
 	var findDup = function (arr) {
 		let dups = [];
 		let compare = [];
@@ -50,7 +50,7 @@ function saveToLocalStroage() {
 		}
 		return compare;
 	};
-	// 2. find the first index for the dup item
+	// part 2 - set an array var for finding the first index for the dup item
 	var firstIndex = function (arr1, arr2) {
 		let firstIndexArr = [];
 		for (b = 0; b < arr2.length; b++) {
@@ -59,7 +59,8 @@ function saveToLocalStroage() {
 		}
 		return firstIndexArr;
 	};
-	// 3. only get the last time to the final array
+
+	// part 3 - set an array var for only get the first time to the final array
 	var removeDup = function (arr1, arr2) {
 		let finalResult = [];
 		for (c = 0; c < arr2.length; c++) {
@@ -67,18 +68,20 @@ function saveToLocalStroage() {
 		}
 		return finalResult;
 	};
-	// 4. return the final result for saving
-	saveCityListArrayFinal = removeDup(
+
+	// part 4 - set a var for return the final result for saving
+	var saveCityListArrayFinal = removeDup(
 		searchCityRecordArr,
 		firstIndex(searchCityRecordArr, findDup(searchCityRecordArr))
 	);
-	// 5. save it into local stroage
+	// part5 - save it into local stroage
 	localStorage.setItem(
 		'searchWeatherCityList',
 		JSON.stringify(saveCityListArrayFinal)
 	);
 }
 
+// function searchRec3 - dispaly the result into the "search Record" list
 function displayRecordList() {
 	// empty the list
 	$('.searchRecordList').empty();
@@ -104,20 +107,23 @@ function displayRecordList() {
 	}
 }
 
+// function searchRec4 - put the city name (input by user) into an sort array
+// => save the sort array into local stroage
 function saveTheList(cityName) {
-	console.log(cityName);
 	// add the city name in the searchCityRecord array
 	searchCityRecordArr.push(cityName);
+	// set the sort array
 	let sortArray = [];
+	// put the last item to the first place inside the array
 	sortArray[0] = searchCityRecordArr[searchCityRecordArr.length - 1];
-	// sort the list by picking the last search item to first
+	// put the rest of the item into the next postion to their orignal one
 	for (let k = 0; k < searchCityRecordArr.length - 1; k++) {
 		sortArray[k + 1] = searchCityRecordArr[k];
 	}
+	// change the searchCityRecordArr content as the sortArray
 	searchCityRecordArr = sortArray;
-	console.log(searchCityRecordArr);
-	// save the new array into local stroage
+	// save the new array into local stroage (function - searchRec2)
 	saveToLocalStroage();
-	// redisplay the searchcityrecord list
+	// redisplay the searchcityrecord list (function - searchRec3)
 	displayRecordList();
 }
