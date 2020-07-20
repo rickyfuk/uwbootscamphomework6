@@ -1,5 +1,8 @@
 // global variable
+// user input value
 var inputByUser;
+// get the orignal list-state from html
+var listState = $('.searchRecordList').attr('listShow');
 
 // convert the UNIX time to a date
 function timeConverter(UNIX_timestamp) {
@@ -65,6 +68,65 @@ function uvIndex(lat, lon, APIKey) {
 	});
 }
 
+function defaultResult() {
+	// empty the previous search result
+	$('.showResult').empty();
+
+	// set the option for the geolocation
+	var options = {
+		enableHighAccuracy: true,
+		timeout: 5000,
+		maximumAge: 0,
+	};
+
+	// when the location load successfully
+	function success(pos) {
+		let locatedResult = pos.coords;
+		console.log('Your current position is:');
+		console.log(`Latitude : ${locatedResult.latitude}`);
+		console.log(`Longitude: ${locatedResult.longitude}`);
+
+		let lat = locatedResult.latitude;
+		let lon = locatedResult.longitude;
+
+		// This is our API key
+		var APIKey = '73c25ad71b995c66d607f5fb411cc629';
+		// Here we are building the URL we need to query the database
+		var queryURL =
+			'https://api.openweathermap.org/data/2.5/weather?lat=' +
+			lat +
+			'&lon=' +
+			lon +
+			'&appid=' +
+			APIKey;
+
+		showResultAjax(queryURL, APIKey);
+	}
+
+	// when the location load unsuccessfully
+	function error(err) {
+		console.warn(`ERROR(${err.code}): ${err.message}`);
+
+		// Create a h2 tag to hold the city name/date/weather icon
+		var todayH2 = $('<h2>');
+		// add class for todayh2
+		$(todayH2).addClass('resultrowMain errorMsg');
+		// append todayH2 to resultToday Div
+		$('.showResult').append(todayH2);
+
+		// Create a span tag to hold the city name inside the h2 tag
+		var todaySpanCity = $('<span>');
+		// add id and class for todaySpanCity
+		$(todaySpanCity).addClass('resultCityname display-4 mb-2 mr-lg-2');
+		// add the city name to the span
+		$(todaySpanCity).text('Sorry, we cannot find your location');
+		// append todaySpanCity into todayH2
+		$('.resultrowMain').append(todaySpanCity);
+	}
+
+	navigator.geolocation.getCurrentPosition(success, error, options);
+}
+
 // function for look up the weather for the city from the database
 function showResult() {
 	// empty the previous search result
@@ -80,6 +142,10 @@ function showResult() {
 		'&appid=' +
 		APIKey;
 
+	showResultAjax(queryURL, APIKey);
+}
+
+function showResultAjax(queryURL, APIKey) {
 	// use ajax to call the city weather deatils
 	$.ajax({
 		url: queryURL,

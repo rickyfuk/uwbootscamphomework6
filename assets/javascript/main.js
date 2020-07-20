@@ -1,13 +1,9 @@
 $(document).ready(function () {
-	// get the orignal list-state from html
-	var listState = $('.searchRecordList').attr('listShow');
-	// run the geolocation weather (not done yet)
-	// defaultResult();
 	// run the load previous search result for the first time
 	displayRecordList();
 
 	if (searchCityRecordArr.length > 0) {
-		inputByUser = searchCityRecordArr[searchCityRecordArr.length - 1];
+		inputByUser = searchCityRecordArr[0];
 		showResult();
 	}
 
@@ -96,8 +92,9 @@ $(document).ready(function () {
 	});
 
 	// when the city in the search history list is click
-	$('.searchRecordSpan').on('click', function () {
+	$('.searchRecordList').on('click', '.searchRecordSpan', function () {
 		event.preventDefault();
+		console.log('hide list is working');
 		// change the arrow button direction and show the list
 		if (listState !== 'notShow') {
 			$('.searchRecordList').addClass('d-none');
@@ -113,20 +110,23 @@ $(document).ready(function () {
 	});
 
 	// set the search city as bold when the mouse enter the city span
-	$('.searchRecordSpan').mouseenter(function () {
+	$('.searchRecordList').on('mouseenter', '.searchRecordSpan', function () {
 		event.preventDefault();
+		console.log('bold is working');
 		$(this).addClass('searchRecordHighlight');
 	});
 
 	// reset the search city as normal when the mouse exit the city span
-	$('.searchRecordSpan').mouseleave(function () {
+	$('.searchRecordList').on('mouseleave', '.searchRecordSpan', function () {
 		event.preventDefault();
+		console.log('unbold is working');
 		$(this).removeClass('searchRecordHighlight');
 	});
 
 	// unfocus the city name when it is not click
-	$('.searchRecordSpan').mouseup(function blurInput() {
+	$('.searchRecordList').on('mouseup', '.searchRecordSpan', function () {
 		event.preventDefault();
+		console.log('i am working');
 		$('.searchRecordSpan').blur();
 	});
 });

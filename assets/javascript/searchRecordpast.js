@@ -28,9 +28,6 @@ function loadFromLocalStroage() {
 		$(listSpan1).attr('id', 'searchRecordSpanHead');
 		$(listSpan1).text('Recent Search :');
 		$('.searchRecordHead').append(listSpan1);
-	} else {
-		// run the geolocation weather
-		defaultResult();
 	}
 }
 
@@ -50,14 +47,14 @@ function saveToLocalStroage() {
 		}
 		return compare;
 	};
-	// 2. find the first index for the dup item
-	var firstIndex = function (arr1, arr2) {
-		let firstIndexArr = [];
+	// 2. find the last index for the dup item
+	var lastIndex = function (arr1, arr2) {
+		let lastIndexArr = [];
 		for (b = 0; b < arr2.length; b++) {
-			let num = arr1.indexOf(arr2[b]);
-			firstIndexArr.push(num);
+			let num = arr1.lastIndexOf(arr2[b]);
+			lastIndexArr.push(num);
 		}
-		return firstIndexArr;
+		return lastIndexArr;
 	};
 	// 3. only get the last time to the final array
 	var removeDup = function (arr1, arr2) {
@@ -70,7 +67,7 @@ function saveToLocalStroage() {
 	// 4. return the final result for saving
 	saveCityListArrayFinal = removeDup(
 		searchCityRecordArr,
-		firstIndex(searchCityRecordArr, findDup(searchCityRecordArr))
+		lastIndex(searchCityRecordArr, findDup(searchCityRecordArr))
 	);
 	// 5. save it into local stroage
 	localStorage.setItem(
@@ -85,7 +82,8 @@ function displayRecordList() {
 	// load data from local stroage
 	loadFromLocalStroage();
 	// display all the city in the searchCityRecordArr
-	for (let j = 0; j < Math.min(searchCityRecordArr.length, 16); j++) {
+	//     var j = searchCityRecordArr.length - 1; // j > Math.max(searchCityRecordArr.length - 16, -1); // j--
+	for (let j = 0; j < searchCityRecordArr.length; j++) {
 		// create a list tag
 		var listTag = $('<li>');
 		// add class and id for the list header
@@ -101,21 +99,30 @@ function displayRecordList() {
 		$(listSpan).attr('dataValue', searchCityRecordArr[j]);
 		$(listSpan).text(searchCityRecordArr[j]);
 		$('#searchRecord' + j).append(listSpan);
+		searchCityitem = document.getElementById('searchRecordSpan' + j);
+		searchCityitem.addEventListener('click', reloadTheCity);
 	}
+}
+
+function reloadTheCity() {
+	event.preventDefault();
+	if (listState !== 'notShow') {
+		$('.searchRecordList').addClass('d-none');
+		listState = 'notShow';
+		$('.dropDownIcon').removeClass('fa-angle-double-up');
+		$('.dropDownIcon').addClass('fa-angle-double-down');
+	}
+	inputByUser = $(this).text();
+	// clear the input box content
+	$('#searchCityInput').val('');
+	console.log(inputByUser);
+	showResult();
 }
 
 function saveTheList(cityName) {
 	console.log(cityName);
 	// add the city name in the searchCityRecord array
 	searchCityRecordArr.push(cityName);
-	let sortArray = [];
-	sortArray[0] = searchCityRecordArr[searchCityRecordArr.length - 1];
-	// sort the list by picking the last search item to first
-	for (let k = 0; k < searchCityRecordArr.length - 1; k++) {
-		sortArray[k + 1] = searchCityRecordArr[k];
-	}
-	searchCityRecordArr = sortArray;
-	console.log(searchCityRecordArr);
 	// save the new array into local stroage
 	saveToLocalStroage();
 	// redisplay the searchcityrecord list
