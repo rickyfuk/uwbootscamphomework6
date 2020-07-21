@@ -56,7 +56,7 @@ function forcastWeather(lat, lon, APIKey) {
 			var forcastResultDiv = $('<div>');
 			// add class to the forcast result container
 			$(forcastResultDiv).addClass(
-				'forcastResult col-12 mb-3 mr-lg-3 col-lg-2 pt-lg-2'
+				'forcastResult col-12 mb-3 mr-lg-3 col-lg-2 pt-lg-2 containerShadow'
 			);
 			$(forcastResultDiv).addClass('forcast' + i);
 			// append the forcast result Div to the

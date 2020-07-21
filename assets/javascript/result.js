@@ -154,7 +154,7 @@ function showResultAjax(queryURL, APIKey) {
 		// append the todayDiv0 to resultToday Div
 		$('.showResult').prepend(todayDiv0);
 		// add id and class for todayDiv1
-		$(todayDiv0).addClass('col-12 resultToday');
+		$(todayDiv0).addClass('col-12 resultToday containerShadow');
 
 		// Create a div to hold the response
 		var todayDiv1 = $('<div>');
