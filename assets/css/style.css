@@ -5,8 +5,6 @@
 html {
 	width: 100% !important;
 	min-height: 100%;
-	background-color: rgb(5, 40, 225);
-	background-image: linear-gradient(to bottom right, rgb(78, 78, 235), #a09be5);
 }
 
 header {

@@ -115,7 +115,9 @@ function defaultResult() {
 		// add id and class for todaySpanCity
 		$(todaySpanCity).addClass('resultCityname display-4 mb-2 mr-lg-2');
 		// add the city name to the span
-		$(todaySpanCity).text('Sorry, we cannot find your location');
+		$(todaySpanCity).html(
+			'Sorry, we cannot find your location <br/><br/>Please enter a city in the search box'
+		);
 		// append todaySpanCity into todayH2
 		$('.resultrowMain').append(todaySpanCity);
 	}
