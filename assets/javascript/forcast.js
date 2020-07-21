@@ -51,7 +51,6 @@ function forcastWeather(lat, lon, APIKey) {
 			finalForcastDate[i] = timeConverter(
 				response.daily[i].dt + response.timezone_offset
 			);
-			console.log(finalForcastDate);
 
 			// create a div for the forcast result container
 			var forcastResultDiv = $('<div>');

@@ -30,7 +30,6 @@ function uvIndex(lat, lon, APIKey) {
 		url: queryURLUV,
 		method: 'GET',
 	}).then(function (responseUV) {
-		console.log(responseUV);
 		// save the uv value into uvValue
 		uvValue = responseUV.value;
 		// round the uv value into uvValueRound
@@ -150,7 +149,6 @@ function showResultAjax(queryURL, APIKey) {
 		url: queryURL,
 		method: 'GET',
 	}).then(function (response) {
-		console.log(response);
 		// Create a div to hold the response
 		var todayDiv0 = $('<div>');
 		// append the todayDiv0 to resultToday Div
@@ -179,7 +177,6 @@ function showResultAjax(queryURL, APIKey) {
 		$(todaySpanCity).addClass('resultCityname display-4 mb-2 mr-lg-2');
 		// add the city name to the span
 		$(todaySpanCity).text(response.name);
-		console.log(response.name);
 		// append todaySpanCity into todayH2
 		$('.resultrowMain').append(todaySpanCity);
 

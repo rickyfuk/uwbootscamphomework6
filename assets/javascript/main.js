@@ -24,7 +24,6 @@ $(document).ready(function () {
 			$('.dropDownIcon').removeClass('fa-angle-double-up');
 			$('.dropDownIcon').addClass('fa-angle-double-down');
 		}
-		console.log('search btn is clickin');
 		// locate the city name and run weather result
 		inputByUser = $('#searchCityInput').val();
 		// run the main function to generate the weather data and layout (function - Result4)
@@ -84,7 +83,6 @@ $(document).ready(function () {
 	// hide the list again when the input box is not being focus anymore
 	// => turn the up arrow to down arrow
 	$('#searchCityInput').focusout(function () {
-		console.log('focusout is running');
 		event.preventDefault();
 		if (listState !== 'notShow') {
 			$('.searchRecordList').addClass('d-none');

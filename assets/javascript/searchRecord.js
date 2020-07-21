@@ -45,7 +45,6 @@ function saveToLocalStroage() {
 				dups.push(arr[a]);
 			} else {
 				compare.push(arr[a]);
-				console.log(compare);
 			}
 		}
 		return compare;
