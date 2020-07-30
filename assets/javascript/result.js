@@ -18,7 +18,7 @@ function timeConverter(UNIX_timestamp) {
 function uvIndex(lat, lon, APIKey) {
 	// Here we are building another URL for UV as we need to query another database
 	var queryURLUV =
-		'https://api.openweathermap.org/data/2.5/uvi?appid=' +
+		'https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/uvi?appid=' +
 		APIKey +
 		'&lat=' +
 		lat +
